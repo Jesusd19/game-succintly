@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Game rows={5} columns={6} />       
+        <Game rows={5} columns={6} activeCellsCount={6} />       
       </div>
     );
   }
