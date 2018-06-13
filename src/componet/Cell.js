@@ -4,12 +4,16 @@ export default class Cell extends React.Component {
         return this.props.activeCells.indexOf(this.props.id) >= 0;
     }
     handleClick() {
-        if (this.props.gameState === "recall") {
+        if (this.guessState() === undefined &&
+            this.props.gameState === "recall") {
             this.props.recordGuess({
                 cellId: this.props.id,
                 userGuessIsCorrect: this.active()
             });
         }
+    }
+    showActiveCells() {
+        return ["memorize", "lost"].indexOf(this.props.gameState) >= 0;
     }
     guessState() {
         if (this.props.correctGuesses.indexOf(this.props.id) >= 0) {
@@ -20,7 +24,7 @@ export default class Cell extends React.Component {
     }
     render() {
         let className = "cell";
-        if (this.props.gameState === "memorize" && this.active()) {
+        if (this.showActiveCells() && this.active()) {
             className += " active";
         }
         className += " guess-" + this.guessState();

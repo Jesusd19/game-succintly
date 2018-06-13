@@ -3,10 +3,20 @@ import Game from './componet/Game';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { gameId: 1 };
+  }
+  createNewGame() {
+    this.setState({ gameId: this.state.gameId + 1 });
+  }
   render() {
     return (
-      <div className="App">
-        <Game rows={5} columns={6} activeCellsCount={6} />       
+      <div>
+        <Game key={this.state.gameId}
+          createNewGame={this.createNewGame.bind(this)}
+          rows={5} columns={5}
+          activeCellsCount={6} />
       </div>
     );
   }
